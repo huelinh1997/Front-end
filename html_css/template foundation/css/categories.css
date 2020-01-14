@@ -1,0 +1,29 @@
+.categories {
+    display: flex;
+}
+
+.categories__base {
+  width: 262px;
+  height: 300px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.categories__base:not(last-child) {
+  margin-right: 30px;
+}
+
+.categories__base img {
+  padding: 22px 0;
+}
+
+.categories__base:hover {
+  background-color: #3040C4;
+  color: #ffffff;
+  cursor: pointer;
+}

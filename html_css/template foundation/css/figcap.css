@@ -1,0 +1,10 @@
+.figcap {
+  color: rgba(43, 41, 45, 0.6);
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.figcap--margin {
+  margin-top: 15px;
+}

@@ -1,0 +1,17 @@
+.box {
+  max-width: 360px;
+}
+
+.box__content {
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+
+.box__link {
+  color: #3040C4;
+}
+
+.box__link:hover {
+  font-weight: bold;
+}

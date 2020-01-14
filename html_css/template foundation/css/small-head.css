@@ -1,0 +1,17 @@
+.small-head {
+  font-size: 22px;
+  line-height: 34px;
+  font-weight: 700;
+}
+
+.small-head--green {
+  color: #009B4D;
+}
+
+.small-head--blue {
+  color: #0189D1;
+}
+
+.small-head--orange {
+  color: #F1592B;
+}

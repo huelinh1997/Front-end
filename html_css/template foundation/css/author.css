@@ -1,0 +1,11 @@
+.author {
+  line-height: 22px;
+}
+
+.author-name {
+  font-weight: bold;
+}
+
+.author-position {
+  color: rgba(43, 41, 45, 0.6);
+}

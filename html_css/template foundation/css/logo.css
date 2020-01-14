@@ -1,0 +1,24 @@
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo__pic {
+  margin-right: 15px;
+}
+
+.logo__text {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: bold;
+}
+
+.logo__text:hover {
+  color: #3040C4;
+  cursor: pointer;
+}
+
+.logo__content {
+  opacity: 0.6;
+  font-weight: normal;
+}

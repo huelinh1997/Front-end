@@ -1,0 +1,38 @@
+.list {
+  max-width: 750px;
+}
+
+.list__item {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(43,41,45, 0.2);
+  border-radius: 8px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  color: #2B292D;
+}
+
+.list__item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.list__item:hover, .list__item:hover > .list__text {
+  background-color: #3141C5;
+  color: #ffffff;
+}
+
+.list__title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  width: 408px;
+  margin-right: 20px;
+}
+
+.list__text {
+  color: rgba(43, 41, 45, 0.6);
+  font-size: 18px;
+  line-height: 24px;
+  width: 232px;
+  margin-right: 33px;
+}
