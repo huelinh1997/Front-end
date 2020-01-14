@@ -1,0 +1,11 @@
+
+.ask {
+  width: 555px;
+  font-size: 22px;
+  line-height: 32px;
+}
+
+.ask__title {
+  padding-bottom: 10px;
+  font-weight: bold;
+}

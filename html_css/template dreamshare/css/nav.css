@@ -1,0 +1,39 @@
+.nav {
+  display: flex;
+}
+
+.nav__list {
+  list-style-type: none;
+  display: flex;
+}
+
+.nav__item {
+  margin-left: 35px;  
+  display: flex;
+  align-items: center;
+}
+
+.nav__item > a:hover {
+  color: #3040C4;
+}
+
+.nav__item--popup {
+  position: relative;
+}
+
+.nav__item--popup .nav__link {
+  display: flex;
+  align-items: center;
+}
+
+.nav__item--popup:hover .popup {
+  display: block;
+}
+
+.nav__link {
+  color: #2B292D;
+}
+
+.nav__arrow {
+  margin-left: 11px;
+}
