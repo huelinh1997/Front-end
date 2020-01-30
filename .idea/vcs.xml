@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/html_css/modern-business-template" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/html_css/template dreamshare" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/html_css/template foundation" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/javascript/JS-appTodo" vcs="Git" />
+  </component>
+</project>
