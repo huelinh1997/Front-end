@@ -3,22 +3,29 @@ import {connect} from "react-redux";
 import {checkAllTodo} from '../action/action'
 
 class CheckboxAll extends React.Component{
+    constructor(props) {
+        super(props)
+        this.toggleAllElement = React.createRef()
+    }
     componentDidMount() {
-        console.log('did mount')
-        let listTodo = this.props.todos;
-        let listHasDone = listTodo.filter(item=>item.hasDone)
-        if(listHasDone.length === listTodo.length) {
-            document.getElementById('toggle-all').checked = true
-        } else document.getElementById('toggle-all').checked = false
+        if(this.props.isCheckAll) {
+            this.toggleAllElement.current.checked = true
+        } else this.toggleAllElement.current.checked = false
+    }
+
+    componentDidUpdate() {
+        if(this.props.isCheckAll) {
+            this.toggleAllElement.current.checked = true
+        } else this.toggleAllElement.current.checked = false
     }
 
     render() {
         return (
             <div id="checkAll">
-                <input onClick={()=> this.props.handlerOnCheckAll()} type="checkbox" id="toggle-all" className="toggle-all"/>
+                <input className="toggle-all" type="checkbox" id="toggle-all"
+                       ref={this.toggleAllElement}
+                       onClick={()=> this.props.handlerOnCheckAll()} />
                 <label for="toggle-all"></label>
-
-
             </div>
         )
     }
@@ -32,7 +39,8 @@ const mapDispatchToProps = (dispatch)=> {
 
 const mapStateToProps = (state)=> {
     return {
-        todos: state.todos
+        todos: state.todos,
+        isCheckAll: state.isCheckAll
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CheckboxAll)

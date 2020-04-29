@@ -1,76 +1,116 @@
+const status = window.location.pathname.substring(1, window.location.pathname.length);
 const stateDefault = {
     todos: [
-        {id: 1, task: "Hoc HTML", hasDone: false},
-        {id: 2, task: "Hoc CSS", hasDone: false},
-         {id: 3, task: "Hoc JS", hasDone: false}
-        // {id: 4, task: "Hoc React", hasDone: false},
-        // {id: 5, task: "Hoc Redux", hasDone: false}
+        {id: 3, task: "Hoc HTML", hasDone: true, isEdit: false},
+        {id: 2, task: "Hoc CSS", hasDone: false, isEdit: false},
+        {id: 1, task: "Hoc JS", hasDone: false, isEdit: false}
     ],
-    isCheckAll: false
+    isCheckAll: false,
+    filterStatus: status === '' ? 'all' : status
 }
-let lengthDefault = stateDefault.todos.length
-console.log('lengthDefault:', lengthDefault)
 
-function addEffectWhenCheck(e_input) {
-    if(e_input.checked) {
-        e_input.parentElement.parentElement.classList.add('completed');
-    } else e_input.parentElement.parentElement.classList.remove('completed');
-
-}
 export function reducer(state=stateDefault, action){
     let todos = state.todos;
     let isCheckAll = state.isCheckAll;
-    let new_state = {...state};
-    console.log('state: ', state)
     switch(action.type){
         case 'ADD_TODO':
-            lengthDefault += 1;
-            let todo = {id: lengthDefault , task: action.task, hasDone: false}
-            new_state.todos = [todo, ...todos];
-            return new_state;
-        case 'CHECK_TODO':
-            // let e_input = document.getElementById(`input${action.id}`);
-            // addEffectWhenCheck(e_input)
-
-            let indexUpdate = todos.findIndex(item=>item.id === action.id);
-            let todoUpdate = {...todos[indexUpdate]};
-            todoUpdate.hasDone = !todoUpdate.hasDone;
-            new_state.todos[indexUpdate] = todoUpdate;
-
-            let listItemLeft = todos.filter(item=>!item.hasDone)
-            console.log('listItemLeft', listItemLeft)
-            if(listItemLeft.length === 0) {
-                document.getElementById('toggle-all').checked = true;
-                isCheckAll = true;
-            } else {
-                document.getElementById('toggle-all').checked = false;
-                isCheckAll = false
-            }
             return {
-                todos: [...new_state.todos],
-                isCheckAll
+                ...state,
+                todos: [
+                    {
+                        id: state.todos.length === 0 ? 1 : state.todos[0].id + 1,
+                        task: action.task,
+                        hasDone: false
+                    },
+                    ...state.todos
+                ]
             }
+
+        case 'CHECK_TODO':
+            let newTodo = todos.map(item=> {
+                if(item.id === action.id) {
+                    return {
+                        ...item,
+                        hasDone: !item.hasDone
+                    }
+                } else return item
+            })
+            return  {
+                ...state,
+                todos: newTodo,
+                isCheckAll: newTodo.filter(item=>!item.hasDone).length === 0 ? true : false
+            }
+
         case 'CHECK_ALL_TODO':
-            console.log('check all')
             isCheckAll = !isCheckAll;
-            console.log('checkall', isCheckAll)
             let e_listInput = document.getElementsByName('check')
             e_listInput.forEach(item=>{
                 if(item.checked !== isCheckAll) {
                     item.checked = !item.checked
                 }
             });
-            for(let i = 0; i < todos.length; i++) {
-                let todoUpdate = {...todos[i]};
-                if(todoUpdate.hasDone !== isCheckAll) {
-                    todoUpdate.hasDone = !todoUpdate.hasDone;
-                    new_state.todos[i] = todoUpdate
-                }
-            }
+
             return {
-                todos: [...new_state.todos],
+                ...state,
+                todos: state.todos.map(item=> {
+                    if(item.hasDone !== isCheckAll) {
+                        return {
+                            ...item,
+                            hasDone: !item.hasDone
+                        }
+                    } else return item
+                }),
                 isCheckAll
             }
+
+        case 'DELETE_TODO':
+            return {
+                ...state,
+                todos: state.todos.filter(item=> item.id !== action.id)
+            }
+
+        case 'CLEAR_COMPLETED':
+            return {
+                ...state,
+                todos: state.todos.filter(item => !item.hasDone)
+            }
+
+        case 'CHANGE_FILTER':
+            return {
+                ...state,
+                filterStatus: action.status
+            }
+
+        case 'EDIT_TASK':
+            return {
+                ...state,
+                todos: state.todos.map(item=> {
+                    if(item.id === action.id) {
+                        return {
+                            ...item,
+                            isEdit: true
+                        }
+                    } else return {
+                        ...item,
+                        isEdit: false
+                    }
+                })
+            }
+
+        case 'UPDATE_TASK':
+            return {
+                ...state,
+                todos: state.todos.map(item=> {
+                    if(item.id === action.id) {
+                        return {
+                            ...item,
+                            task: action.newTask,
+                            isEdit: false
+                        }
+                    } else return item
+                })
+            }
+
         default:
             return state;
     }
